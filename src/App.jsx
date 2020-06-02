@@ -3,11 +3,12 @@ import Slider from './components/Slider/Slider';
 import Page from './pages/Page';
 import Login from './pages/Login/Login';
 import SignUp from './pages/SignUp/SignUp';
+// import Reaction from './components/Reactions/Reactions';
 import React, { useState } from 'react';
 import { IonApp, IonRouterOutlet, IonSplitPane, IonButton, IonItem, IonContent } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 import { Redirect, Route, Link } from 'react-router-dom';
-
+import { AndroidFingerprintAuth } from '@ionic-native/android-fingerprint-auth';
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
 
@@ -28,9 +29,18 @@ import '@ionic/react/css/display.css';
 import './theme/variables.css';
 
 const App = () => {
-  const [loggedIn, setLoggedIn] = useState(true);
 
-  if (loggedIn) {
+  // let getFingerPrintInfo = async () => {
+  //   let fingerPrint = await AndroidFingerprintAuth.decrypt('IonicApp');
+
+  // }
+  const [loggedIn, setLoggedIn] = useState(localStorage.getItem("LoggedIn"));
+  // if (loggedIn && AndroidFingerprintAuth.isAvailable) {
+  //   getFingerPrintInfo();
+  // }
+
+
+  if (!loggedIn) {
     return (
       <IonApp>
         <IonContent>
@@ -58,7 +68,7 @@ const App = () => {
               <Route path="/page/:name" component={Page} exact />
               <Route path="/Slider" component={Slider} exact />
               <Route path="/Login" component={Login} exact />
-              <Redirect from="/" to="/page/Inbox" exact />
+              <Redirect from="/" to="/page/News" exact />
             </IonRouterOutlet>
           </IonSplitPane>
         </IonReactRouter>

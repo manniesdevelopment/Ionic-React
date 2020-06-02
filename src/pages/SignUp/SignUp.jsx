@@ -12,7 +12,10 @@ const SignUp = () => {
     const handleSignUp = (e) => {
         e.preventDefault();
         document.getElementById("login").innerHTML = "Logging In."
-        console.log(email + '  ' + password + '-----')
+        setTimeout(() => {
+            localStorage.setItem('LoggedIn', true);
+            window.location = '/';
+        }, 3000);
         let payload = {
             name: "Manasvi",
             email: "manny@gmail.com",
@@ -20,14 +23,14 @@ const SignUp = () => {
             password2: "Manny@123"
         }
 
-        Axios.post('http://3.105.129.161/api/users/register', payload, { mode: 'no-cors', headers: { 'Access-Control-Allow-Origin': '*' } }).then((res) => {
-            console.log(res);
-            window.location = '/pages/';
-        },
-            (err) => {
-                console.log(err);
-            }
-        )
+        // Axios.post('http://3.105.129.161/api/users/register', payload, { mode: 'no-cors', headers: { 'Access-Control-Allow-Origin': '*' } }).then((res) => {
+        //     console.log(res);
+        //     window.location = '/pages/';
+        // },
+        //     (err) => {
+        //         console.log(err);
+        //     }
+        // )
 
     }
 
@@ -43,17 +46,17 @@ const SignUp = () => {
                     <br />
                     {/* <IonItem> */}
                     {/* <br /> */}
-                    <IonInput value={email} onInput={(e) => { setEmail(e.target.value) }} type="text" placeholder="Email ID" />
+                    <IonInput value={email} onInput={(e) => { setEmail(e.target.value) }} type="email" placeholder="Email ID" />
                     {/* </IonItem> */}
 
                     {/* <br /><IonItem> */}
                     <br />
-                    <IonInput value={password} onInput={(e) => { setPassword(e.target.value) }} type="text" placeholder="Password" />
+                    <IonInput value={password} onInput={(e) => { setPassword(e.target.value) }} type="password" placeholder="Password" />
                     {/* </IonItem> */}
 
                     {/* <br /><IonItem> */}
                     <br />
-                    <IonInput value={verifypassword} onInput={(e) => { setVerifyPassword(e.target.value) }} type="text" placeholder="Confirm Password" />
+                    <IonInput value={verifypassword} onInput={(e) => { setVerifyPassword(e.target.value) }} type="password" placeholder="Confirm Password" />
                     {/* </IonItem> */}
 
                     <br />

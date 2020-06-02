@@ -24,6 +24,12 @@ interface AppPage {
 
 const appPages: AppPage[] = [
   {
+    title: 'News',
+    url: '/page/News',
+    iosIcon: warningOutline,
+    mdIcon: warningSharp
+  }
+  ,{
     title: 'Inbox',
     url: '/page/Inbox',
     iosIcon: mailOutline,
@@ -52,12 +58,6 @@ const appPages: AppPage[] = [
     url: '/page/Trash',
     iosIcon: trashOutline,
     mdIcon: trashSharp
-  },
-  {
-    title: 'Spam',
-    url: '/page/Spam',
-    iosIcon: warningOutline,
-    mdIcon: warningSharp
   }
 ];
 

@@ -1,20 +1,34 @@
 import React, { useState } from 'react';
 import { IonInput, IonCard, IonItem, IonButton, IonCardContent, IonIcon } from '@ionic/react';
-import { arrowForward } from 'ionicons/icons';
+import { arrowForward, fingerPrint } from 'ionicons/icons';
+// import { AndroidFingerprintAuth } from '@ionic-native/android-fingerprint-auth';
 import Axios from 'axios';
 const Login = () => {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
+    // const setupFingerPrint = async () => {
+    //     document.getElementById("login").innerHTML = "BioMetric"
+    //     let fingerprint = await AndroidFingerprintAuth.encrypt('IonicApp');
+    //     document.getElementById("login").innerHTML = fingerprint;
+    // }
+
     const handleLogin = (e) => {
         e.preventDefault();
         document.getElementById("login").innerHTML = "Logging In."
+        // if (AndroidFingerprintAuth.isAvailable) setupFingerPrint();
+        // setTimeout(() => {
+        //     localStorage.setItem('LoggedIn', true);
+        //     window.location = '/';
+        // }, 3000);
         console.log(email + '  ' + password + '-----')
         let payload = {
             "email": email,
             "password": password,
         }
+
+
         // console.log(typeOf(payload));
         // const response = fetch("http://3.105.129.161/api/users/login", {
         //     method: 'POST', // *GET, POST, PUT, DELETE, etc.
@@ -31,9 +45,9 @@ const Login = () => {
         // }).then((res) => {
         //     console.log(res)
         // }, (err) => { document.getElementById("login").innerHTML = "Login" });
-        Axios.post('http://3.105.129.161/api/users/login', payload).then((res) => {
-            if (res.success) window.location = "feed";
-        })
+        // Axios.post('http://3.105.129.161/api/users/login', payload).then((res) => {
+        //     if (res.success) window.location = "feed";
+        // })
         // let response = await Axios.post('http://3.105.129.161/api/users/login', payload);
         // try {
         //     if (response.success) window.location = "feed"
@@ -49,12 +63,12 @@ const Login = () => {
             <IonCardContent>
                 <form>
                     {/* <IonItem> */}
-                    <IonInput autofocus="true" value={email} onInput={(e) => { setEmail(e.target.value) }} type="text" placeholder="Email ID" />
+                    <IonInput autofocus="true" value={email} onInput={(e) => { setEmail(e.target.value) }} type="email" placeholder="Email ID" />
                     {/* </IonItem> */}
                     <br />
                     {/* <IonItem> */}
                     <br />
-                    <IonInput required={true} value={password} onInput={(e) => { setPassword(e.target.value) }} type="text" placeholder="Password" />
+                    <IonInput required={true} value={password} onInput={(e) => { setPassword(e.target.value) }} type="password" placeholder="Password" />
                     {/* </IonItem> */}
 
                     <br />
